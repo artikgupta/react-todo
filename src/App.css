@@ -25,7 +25,7 @@
   padding: 1rem;
   justify-content: space-between;
 }
-input {
+input[type="text"] {
   width: 20rem;
   height: 3rem;
 }
@@ -46,4 +46,10 @@ input {
   width: 4rem;
   display: flex;
   justify-content: space-between;
+}
+.info {
+  display: flex;
+}
+input[type="checkbox"] {
+  width: 1rem;
 }

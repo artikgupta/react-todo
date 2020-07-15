@@ -8,6 +8,7 @@ class Todo extends Component {
     this.state = {
       todoInput: "",
       todoArray: [],
+      todoCompleted: [],
     };
   }
 
@@ -22,7 +23,10 @@ class Todo extends Component {
       alert("yor input field is empty");
     } else {
       const newTodoArray = [...this.state.todoArray];
-      newTodoArray.push(this.state.todoInput);
+      newTodoArray.push({
+        todoValue: this.state.todoInput,
+        isCompleted: false,
+      });
       console.log(this.state.todoInput);
       this.setState({
         todoInput: "",
@@ -49,12 +53,20 @@ class Todo extends Component {
       todoArray: cloneTodoToDelete,
     });
   };
+  handleIsCompleted = (i) => {
+    const copiedArray = [...this.state.todoArray];
+    copiedArray[i].isCompleted = !copiedArray[i].isCompleted;
+    this.setState({
+      todoArray: copiedArray,
+    });
+  };
 
   render() {
     return (
       <div className="main-container">
         <div className="container">
           <div className="section">
+            <div className="displayFilteredValue"></div>
             <input
               type="text"
               value={this.state.todoInput}
@@ -69,8 +81,10 @@ class Todo extends Component {
             <div>
               <p className="text">
                 {this.state.todoArray.map((todo, index) => {
+                  // console.log(todo);
                   return (
                     <TodoCard
+                      handleIsCompleted={this.handleIsCompleted}
                       todo={todo}
                       index={index}
                       editTodoHandler={this.editTodoHandler}

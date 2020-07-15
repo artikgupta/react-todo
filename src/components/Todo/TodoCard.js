@@ -1,11 +1,23 @@
 import React from "react";
 import Button from "./button";
 
-const TodoCard = ({ todo, index, editTodoHandler, DeleteTodoHandler }) => {
+const TodoCard = ({
+  todo,
+  index,
+  editTodoHandler,
+  DeleteTodoHandler,
+  handleIsCompleted,
+}) => {
+  console.log(todo);
   return (
     <div>
-      <div className=" display-todo" key={todo}>
-        <p>{todo}</p>
+      <input
+        type="checkbox"
+        value={todo.isCompleted}
+        onChange={() => handleIsCompleted(index)}
+      />
+      <div className=" display-todo" key={todo.todoValue}>
+        <p>{todo.todoValue}</p>
         <div className="edit-and-delete">
           <Button
             iconClass="far fa-edit"
